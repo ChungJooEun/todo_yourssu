@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>성</title>
+    <title>index.jsp</title>
 </head>
 <body>
-성공이다
+
+<h1>index.jsp page</h1>
+
 </body>
 </html>
