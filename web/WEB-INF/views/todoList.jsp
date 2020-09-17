@@ -17,49 +17,11 @@
 
 <%--<link   rel = "stylesheet" href = "/resources/css/todo.css">--%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="/resources/js/todo.js"></script>
 
 <head>
     <title> ** ToDo List **</title>
 </head>
-
-<script language="JavaScript" type = "text/javascript">
-
-    // todo list 추가 func
-    var addTodo = function () {
-
-        let todo = $("#addTodo_textBox").val();
-
-        console.log(todo);
-
-        $.ajax({
-            url : '/todo/addTodo',
-            async: true ,
-            type:'POST',
-            contentType : "application/json; charset=UTF-8",
-            dataType : 'json',
-            data : JSON.stringify({
-                todo : todo
-            })
-        }).then(function(data){
-            console.log(data);
-
-            if(data == 'success'){
-                alert("todo 추가 성공");
-
-            }else{
-                alert("todo 추가 실패");
-
-            }
-
-            //할일 목록 가져오기 함수
-
-        });
-
-    }
-
-</script>
-
-
 <body>
 
     <div id = "root">

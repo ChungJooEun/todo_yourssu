@@ -15,17 +15,19 @@ public class TodoController {
     //할일 추가
     @RequestMapping(value = "addTodo", method = RequestMethod.POST)
     @ResponseBody
-    public  String addTodo(@RequestBody Map<String, Object> requestParam){
+    public String addTodo(@RequestBody Map<String, Object> requestParam){
 
         String content = (String)requestParam.get("todo");
 
-        System.out.println("new Todo Add ..." + "  " + content);
+        System.out.println("adding Todo ..." + "  " + content);
 
-        boolean result = true;
+        boolean res = true;
 
-        if(result){
+        if(res){
+            System.out.println("add success!");
             return "success";
         }else{
+            System.out.println("add fail");
             return "fail";
         }
 
