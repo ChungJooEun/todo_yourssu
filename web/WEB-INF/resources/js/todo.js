@@ -1,9 +1,9 @@
 // todo list 추가 func
 var addTodo = function () {
 
-    let todo = $("#addTodo_textBox").val();
+    let content = $("#addTodo_textBox").val();
 
-    console.log(todo);
+    console.log(content);
 
     $.ajax({
         url : '/todo/addTodo',
@@ -11,7 +11,7 @@ var addTodo = function () {
         type:'POST',
         contentType : "application/json; charset=UTF-8",
         data : JSON.stringify({
-            todo : todo
+            content : content
         }),
         success : function (data) {
 

@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import com.example.model.service.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,24 +14,33 @@ import java.util.Map;
 @RequestMapping(value = "/todo")
 public class TodoController {
 
+    @Autowired
+    private TodoService service;
+
     //할일 추가
     @RequestMapping(value = "addTodo", method = RequestMethod.POST)
     @ResponseBody
     public String addTodo(@RequestBody Map<String, Object> requestParam){
 
-        String content = (String)requestParam.get("todo");
+        String content = (String)requestParam.get("content");
 
-        System.out.println("adding Todo ..." + "  " + content);
+        System.out.println("adding new todo...   " + content);
 
-        boolean res = true;
+        boolean res = service.addTodo(content);
 
         if(res){
-            System.out.println("add success!");
             return "success";
         }else{
-            System.out.println("add fail");
             return "fail";
         }
 
     }
+
+    //todo done
+
+    //todo not done
+
+    //todo delete
+
+    //get todoList
 }

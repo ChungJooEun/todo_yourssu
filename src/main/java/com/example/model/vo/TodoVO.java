@@ -1,13 +1,22 @@
 package com.example.model.vo;
 
+import lombok.Data;
+
+@Data
 public class TodoVO {
 
-    //add todo
+    private int id;
+    private String content;
+    private String is_done;
 
-    //todo done
+    public TodoVO(){}
 
-    //todo delete
+    public TodoVO(int id, String content, String is_done){
 
-    //get todoList
+        this.id = id;
+        this.content = content;
+        this.is_done = is_done;
+
+    }
 
 }
