@@ -1,0 +1,54 @@
+body{
+    padding : 0;
+    margin : auto 0;
+    font-family: 'Noto Serif KR', serif;
+}
+
+#root{
+    background: mistyrose;
+    text-align: center;
+    font-family: 'Noto Serif KR', serif;
+}
+
+#title_div{
+    margin-top : 40px;
+    font-size: 25px ;
+}
+
+.underline{
+    width : 500px;
+    border-bottom: 0px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#todoList{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input_class{
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+}
+
+#addTodo_textBox{
+    width: 450px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 23px;
+    font-family: 'Noto Serif KR', serif;
+}
+
+#addTodo_button{
+    font-size: 20px;
+    height: 39px;
+    width: 39px;
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 1000;
+}
+
+
+
+

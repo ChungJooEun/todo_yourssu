@@ -15,7 +15,8 @@
 
 <html>
 
-<%--<link   rel = "stylesheet" href = "/resources/css/todo.css">--%>
+<link rel = "stylesheet" type="text/css" href = "/resources/css/todo.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="/resources/js/todo.js"></script>
 
@@ -27,16 +28,17 @@
     <div id = "root">
 
         <div id = "title_div">
-            <h1>Todo List</h1>
+            <h1>오늘 할일</h1>
+            <hr class = "underline">
         </div>
 
         <div id = "addTodo_div">
             <input type = "text" id = "addTodo_textBox" placeholder="오늘 할일을 계획해보세요!">
-            <button type = "button" id = "addTodo_button" onclick="addTodo()">추가</button>
+            <button type = "button" id = "addTodo_button" onclick="addTodo()">+</button>
         </div>
 
         <div id = "todoList_wrap">
-            <table>
+            <table id = "todoList">
                 <tbody id = "addTodoHere">
 
                 </tbody>
