@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -63,4 +64,11 @@ public class TodoDAO {
         return res;
     }
 
+    public int updateTodo(HashMap<String, Object> map) {
+
+        TodoMapper mapper = getMapper();
+        int res = mapper.updateTodo(map);
+
+        return res;
+    }
 }

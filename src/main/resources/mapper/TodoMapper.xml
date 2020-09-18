@@ -30,4 +30,7 @@
         UPDATE todo_tb set is_deleted = 'Y' WHERE todo_id = #{id};
     </update>
 
+    <update id="updateTodo" parameterType="hashmap">
+        UPDATE todo_tb set content = #{n_content} WHERE todo_id=#{id};
+    </update>
 </mapper>

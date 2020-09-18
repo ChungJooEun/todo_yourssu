@@ -2,6 +2,7 @@ package com.example.mybatis;
 
 import com.example.model.vo.TodoVO;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface TodoMapper {
@@ -21,4 +22,6 @@ public interface TodoMapper {
     //todo delete
     int del_todo(int id);
 
+    //todo content update
+    int updateTodo(HashMap<String, Object> map);
 }

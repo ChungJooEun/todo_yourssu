@@ -5,6 +5,7 @@ import com.example.model.vo.TodoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -77,4 +78,16 @@ public class TodoService {
         }
     }
 
+    //upddate Todo Content
+    public Boolean updateTodo(HashMap<String, Object> map) {
+
+        int res = dao.updateTodo(map);
+
+        if(res == 1){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 }

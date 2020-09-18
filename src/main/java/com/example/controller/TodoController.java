@@ -2,10 +2,12 @@ package com.example.controller;
 
 import com.example.model.service.TodoService;
 import com.example.model.vo.TodoVO;
+import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,5 +117,35 @@ public class TodoController {
 
         return list;
 
+    }
+
+    //update content
+    @RequestMapping(value = "updateTodo", method = RequestMethod.PUT)
+    @ResponseBody
+    public String updateTodo(@RequestBody Map<String, Object> requestParam){
+
+        Boolean res;
+
+        String id_get = String.valueOf(requestParam.get("id"));
+        int id = Integer.parseInt(id_get);
+
+        String n_content = (String)requestParam.get("content");
+
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("id", id);
+        map.put("n_content",n_content);
+
+        if(id < 0 ){
+            res = false;
+        }else{
+
+            res = service.updateTodo(map);
+        }
+
+        if(res){
+            return "success";
+        }else{
+            return "false";
+        }
     }
 }

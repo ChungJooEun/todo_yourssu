@@ -37,7 +37,7 @@ var getTodoList = function () {
 //todo list에 todo 추가
 var addTodoAtList = function (data) {
 
-    var tr = '<tr class = "todo_Comp_tr" name="remove_tr"  onmouseover="showBtn(this)" onmousedown="hideBtn(this)"></tr>';
+    var tr = '<tr class = "todo_Comp_tr" name="remove_tr"></tr>';
 
     if(data.is_done == 'Y'){
         tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '" checked onclick="status_todo(this)"> </td>';
@@ -45,20 +45,52 @@ var addTodoAtList = function (data) {
         tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '" onclick="status_todo(this)"> </td>';
     }
 
-    tr += '<td>' + data.content + '</td>';
-    tr += '<td> <button type="button" value="'+data.id+'" onclick="deleteTodo(this)"> &times; </button> </td>';
+    tr += '<td><input type = "textbox" value = "' + data.content
+        + '" readonly style="border : none;" ' +
+        'ondblclick="change_attr(this)" onchange="update_content(this)"' +
+        'id = "'+data.id+'"/></td>';
+
+    tr += '<td> <button style = "outline:0; border:0; background-color: white;" type="button" value="'+data.id+'" onclick="deleteTodo(this)"> &times; </button> </td>';
 
     $('#addTodoHere').append(tr);
 }
 
-// tr에 마우스 오버했을때, 버튼 보이게 하기
-var showBtn = function (obj) {
-    obj.find("input").css("display","block");
-};
+//dbl click -> content 수정 가능하게 arrt 변경
+var change_attr = function (obj) {
 
-var hideBtn = function(obj){
-    obj.find("input").css("display","none");
-};
+    obj.removeAttribute("readonly");
+
+}
+
+//값이 변경 되면 함수 실행
+var update_content = function (obj) {
+
+    obj.setAttribute("readonly",true);
+
+    var jsonObj = {'id' : obj.getAttribute("id"), 'content' : obj.value};
+
+    $.ajax({
+        url : '/todo/updateTodo',
+        async: true ,
+        type:'PUT',
+        contentType : "application/json; charset=UTF-8",
+        data : JSON.stringify(jsonObj),
+        success : function (data) {
+
+            if(data == 'success'){
+                console.log(data);
+            }else{
+                alert("todo status change 실패");
+            }
+
+        },
+        error : function (e) {
+            alert("status change ( done ) todo -> error");
+        }
+    });
+
+}
+
 
 //check todo -> done
 //none check -> not done
