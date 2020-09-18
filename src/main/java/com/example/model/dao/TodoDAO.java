@@ -27,6 +27,7 @@ public class TodoDAO {
         return res;
     }
 
+    //get todoList
     public List<TodoVO> getTodoList() {
 
         TodoMapper mapper = getMapper();
@@ -36,13 +37,30 @@ public class TodoDAO {
     }
 
     //todo done
+    public int close_todo(int id){
+
+        TodoMapper mapper = getMapper();
+        int res = mapper.close_todo(id);
+
+        return res;
+    }
 
     //todo not done
+    public int open_todo(int id){
+
+        TodoMapper mapper = getMapper();
+        int res = mapper.open_todo(id);
+
+        return res;
+    }
 
     //todo delete
+    public int del_todo(int id){
 
-    //get todoList
+        TodoMapper mapper = getMapper();
+        int res = mapper.del_todo(id);
 
-    //마지막 아이디 조회
+        return res;
+    }
 
 }

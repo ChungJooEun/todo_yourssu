@@ -40,9 +40,9 @@ var addTodoAtList = function (data) {
     var tr = '<tr class = "todo_Comp_tr" name="todoTB_tr" onmouseover="showBtn(this)" onmousedown="hideBtn(this)"></tr>';
 
     if(data.is_done == 'Y'){
-        tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '" checked> </td>';
+        tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '" checked onclick="status_todo(this)"> </td>';
     } else{
-        tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '"> </td>';
+        tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '" onclick="status_todo(this)"> </td>';
     }
 
     tr += '<td>"' + data.content + '"</td>';
@@ -60,11 +60,66 @@ var hideBtn = function(obj){
     obj.find("input").css("display","none");
 };
 
+//check todo -> done
+//none check -> not done
+var status_todo = function(obj){
+
+    console.log(obj.value);
+
+    var jsonObj = {'id' : obj.value};
+
+    if(obj.checked == true){
+
+        $.ajax({
+            url : '/todo/done',
+            async: true ,
+            type:'PUT',
+            contentType : "application/json; charset=UTF-8",
+            data : JSON.stringify(jsonObj),
+            success : function (data) {
+
+                if(data == 'success'){
+                    console.log(data);
+                }else{
+                    alert("todo status change 실패");
+                }
+
+            },
+            error : function (e) {
+                alert("status change ( done ) todo -> error");
+            }
+        });
+
+    }else{
+
+        $.ajax({
+            url : '/todo/notDone',
+            async: true ,
+            type:'PUT',
+            contentType : "application/json; charset=UTF-8",
+            data : JSON.stringify(jsonObj),
+            success : function (data) {
+
+                if(data == 'success'){
+                    console.log(data);
+                }else{
+                    alert("todo status change 실패");
+                }
+
+            },
+            error : function (e) {
+                alert("status change ( done ) todo -> error");
+            }
+        });
+
+    }
+
+};
 
 //todo delete
-var deleteTodo = function (clicked_id) {
+var deleteTodo = function (del_id) {
 
-    console.log(clicked_id);
+    console.log(del_id);
 
 }
 
@@ -72,8 +127,6 @@ var deleteTodo = function (clicked_id) {
 var addTodo = function () {
 
     let content = $("#addTodo_textBox").val();
-
-    console.log(content);
 
     $.ajax({
         url : '/todo/addTodo',

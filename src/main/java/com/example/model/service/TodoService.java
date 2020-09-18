@@ -41,10 +41,40 @@ public class TodoService {
 
 
     //todo done
+    public boolean close_todo(int id){
+
+        int res = dao.close_todo(id);
+
+        if(res == 1){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 
     //todo not done
+    public boolean open_todo(int id){
+
+        int res = dao.open_todo(id);
+
+        if(res == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     //todo delete
+    public boolean del_todo(int id){
 
+        int res = dao.del_todo(id);
+
+        if(res == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }

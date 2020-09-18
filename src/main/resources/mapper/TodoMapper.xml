@@ -18,15 +18,16 @@
         SELECT todo_id, content, is_done FROM todo_tb WHERE is_deleted = 'N';
     </select>
 
-<!--    <select id="searchTopKeywords" resultType="java.lang.String">-->
-<!--        SELECT ke_name, SUM(view_cnt) AS view_cnt FROM keyword_tb AS SUB1-->
-<!--        JOIN(SELECT ke_code, ar_code FROM article_key_tb) AS SUB2-->
-<!--        ON(SUB1.ke_code = SUB2.ke_code)-->
-<!--        INNER JOIN(SELECT ar_code, view_cnt AS view_cnt FROM article_tb) AS SUB3-->
-<!--        ON(SUB2.ar_code = SUB3.ar_code)-->
-<!--        GROUP BY(ke_name)-->
-<!--        ORDER BY view_cnt DESC-->
-<!--        limit #{limit};-->
-<!--    </select>-->
+    <update id="close_todo" parameterType="int">
+        UPDATE todo_tb set is_done = 'Y' WHERE todo_id = #{id};
+    </update>
+
+    <update id="open_todo" parameterType="int">
+        UPDATE todo_tb set is_done = 'N' WHERE todo_id = #{id};
+    </update>
+
+    <update id="del_todo" parameterType="int">
+        UPDATE todo_tb set is_done = 'Y' WHERE todo_id = #{id};
+    </update>
 
 </mapper>

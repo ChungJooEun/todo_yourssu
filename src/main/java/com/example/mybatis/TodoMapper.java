@@ -13,9 +13,12 @@ public interface TodoMapper {
     List<TodoVO> getTodoList();
 
     //todo done
+    int close_todo(int id);
 
     //todo not done
+    int open_todo(int id);
 
     //todo delete
+    int del_todo(int id);
 
 }

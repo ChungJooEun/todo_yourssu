@@ -4,10 +4,7 @@ import com.example.model.service.TodoService;
 import com.example.model.vo.TodoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -26,8 +23,6 @@ public class TodoController {
 
         String content = (String)requestParam.get("content");
 
-        System.out.println("adding new todo...   " + content);
-
         boolean res = service.addTodo(content);
 
         if(res){
@@ -39,8 +34,53 @@ public class TodoController {
     }
 
     //todo done
+    @RequestMapping(value="done", method = RequestMethod.PUT)
+    @ResponseBody
+    public String closeTodo(@RequestBody Map<String, Object> requestParam){
+
+        boolean res;
+
+        String id_get = String.valueOf(requestParam.get("id"));
+        int id = Integer.parseInt(id_get);
+
+
+        if(id < 0 ){
+            res = false;
+        }else{
+            res = service.close_todo(id);
+        }
+
+        if(res){
+            return "success";
+        }else{
+            return "fail";
+        }
+
+    }
 
     //todo not done
+    @RequestMapping(value="notDone", method = RequestMethod.PUT)
+    @ResponseBody
+    public String openTodo(@RequestBody Map<String, Object> requestParam){
+
+        boolean res;
+
+        String id_get = String.valueOf(requestParam.get("id"));
+        int id = Integer.parseInt(id_get);
+
+        if(id < 0 ){
+            res = false;
+        }else{
+            res = service.open_todo(id);
+        }
+
+        if(res){
+            return "success";
+        }else{
+            return "fail";
+        }
+
+    }
 
     //todo delete
 
