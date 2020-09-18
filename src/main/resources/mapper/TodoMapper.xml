@@ -5,7 +5,7 @@
 <mapper namespace="com.example.mybatis.TodoMapper">
 
     <resultMap id="todo_map" type="com.example.model.vo.TodoVO">
-        <id property="id" column="id"/>
+        <id property="id" column="todo_id"/>
         <id property="content" column="content"/>
         <id property="is_done" column="is_done"/>
     </resultMap>
@@ -14,9 +14,9 @@
         INSERT INTO todo_tb (content) VALUES (#{content});
     </insert>
 
-<!--    <select id="searchCodeByName" parameterType="java.lang.String" resultType="java.lang.String">-->
-<!--        SELECT ke_code FROM keyword_tb WHERE ke_name=#{name}-->
-<!--    </select>-->
+    <select id="getTodoList" resultMap="todo_map">
+        SELECT todo_id, content, is_done FROM todo_tb WHERE is_deleted = 'N';
+    </select>
 
 <!--    <select id="searchTopKeywords" resultType="java.lang.String">-->
 <!--        SELECT ke_name, SUM(view_cnt) AS view_cnt FROM keyword_tb AS SUB1-->
@@ -28,15 +28,5 @@
 <!--        ORDER BY view_cnt DESC-->
 <!--        limit #{limit};-->
 <!--    </select>-->
-
-<!--    <delete id="deleteKeyword" parameterType="java.lang.String">-->
-<!--        DELETE FROM article_key_tb WHERE ke_code=#{code}-->
-<!--    </delete>-->
-<!--    <delete id="cutKeywordBtwArticle" parameterType="hashmap">-->
-<!--        DELETE FROM article_key_tb WHERE ke_code=#{keCode} AND ar_code=#{arCode};-->
-<!--    </delete>-->
-<!--    <delete id="cutAllKeywordBtwArticle" parameterType="java.lang.String">-->
-<!--        DELETE FROM article_key_tb WHERE ar_code=#{arCode};-->
-<!--    </delete>-->
 
 </mapper>

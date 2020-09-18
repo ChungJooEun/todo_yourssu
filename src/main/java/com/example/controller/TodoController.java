@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.model.service.TodoService;
+import com.example.model.vo.TodoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -43,4 +45,13 @@ public class TodoController {
     //todo delete
 
     //get todoList
+    @RequestMapping(value = "getTodoList", method = RequestMethod.GET)
+    @ResponseBody
+    public List<TodoVO> getTodoList(){
+
+        List<TodoVO> list = service.getTodoList();
+
+        return list;
+
+    }
 }

@@ -1,8 +1,11 @@
 package com.example.model.service;
 
 import com.example.model.dao.TodoDAO;
+import com.example.model.vo.TodoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TodoService {
@@ -23,6 +26,19 @@ public class TodoService {
 
     }
 
+    //get todoList
+    public List<TodoVO> getTodoList() {
+
+        List<TodoVO> list = dao.getTodoList();
+
+        if(list == null){
+            System.out.println("Todo List is NULL");
+
+        }
+
+        return list;
+    }
+
 
     //todo done
 
@@ -30,5 +46,5 @@ public class TodoService {
 
     //todo delete
 
-    //get todoList
+
 }

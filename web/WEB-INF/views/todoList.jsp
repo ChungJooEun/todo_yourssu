@@ -35,6 +35,14 @@
             <button type = "button" id = "addTodo_button" onclick="addTodo()">추가</button>
         </div>
 
+        <div id = "todoList_wrap">
+            <table>
+                <tbody id = "addTodoHere">
+
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </body>
