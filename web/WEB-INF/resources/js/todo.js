@@ -37,7 +37,7 @@ var getTodoList = function () {
 //todo list에 todo 추가
 var addTodoAtList = function (data) {
 
-    var tr = '<tr class = "todo_Comp_tr" name="todoTB_tr" onmouseover="showBtn(this)" onmousedown="hideBtn(this)"></tr>';
+    var tr = '<tr class = "todo_Comp_tr" name="remove_tr"  onmouseover="showBtn(this)" onmousedown="hideBtn(this)"></tr>';
 
     if(data.is_done == 'Y'){
         tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '" checked onclick="status_todo(this)"> </td>';
@@ -45,8 +45,8 @@ var addTodoAtList = function (data) {
         tr += '<td> <input type="checkbox" name="is_done" value="' + data.id + '" onclick="status_todo(this)"> </td>';
     }
 
-    tr += '<td>"' + data.content + '"</td>';
-    tr += '<td> <button type="button" value="'+data.id+'" onclick="deleteTodo(this.value)"> &times; </button> </td>';
+    tr += '<td>' + data.content + '</td>';
+    tr += '<td> <button type="button" value="'+data.id+'" onclick="deleteTodo(this)"> &times; </button> </td>';
 
     $('#addTodoHere').append(tr);
 }
@@ -117,9 +117,33 @@ var status_todo = function(obj){
 };
 
 //todo delete
-var deleteTodo = function (del_id) {
+var deleteTodo = function (obj) {
 
-    console.log(del_id);
+    var jsonObj = {'id' : obj.value};
+
+    $.ajax({
+        url : '/todo/del',
+        async: true ,
+        type:'PUT',
+        contentType : "application/json; charset=UTF-8",
+        data : JSON.stringify(jsonObj),
+        success : function (data) {
+
+            if(data == 'success'){
+
+                $('tbody tr').remove();
+                getTodoList();
+
+            }else{
+                alert("todo delete 실패");
+            }
+        },
+        error : function (e) {
+            alert("delete todo -> error");
+        }
+    });
+
+
 
 }
 
@@ -141,7 +165,12 @@ var addTodo = function () {
             console.log(data);
 
             if(data == 'success'){
+
+                $("#addTodo_textBox").val('');
+
+                $('tbody tr').remove();
                 getTodoList();
+
             }else{
                 alert("todo 추가 실패");
             }

@@ -83,6 +83,28 @@ public class TodoController {
     }
 
     //todo delete
+    @RequestMapping(value="del", method = RequestMethod.PUT)
+    @ResponseBody
+    public String delTodo(@RequestBody Map<String, Object> requestParam){
+
+        boolean res;
+
+        String id_get = String.valueOf(requestParam.get("id"));
+        int id = Integer.parseInt(id_get);
+
+        if(id < 0 ){
+            res = false;
+        }else{
+            res = service.del_todo(id);
+        }
+
+        if(res){
+            return "success";
+        }else{
+            return "fail";
+        }
+
+    }
 
     //get todoList
     @RequestMapping(value = "getTodoList", method = RequestMethod.GET)

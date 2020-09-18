@@ -27,7 +27,7 @@
     </update>
 
     <update id="del_todo" parameterType="int">
-        UPDATE todo_tb set is_done = 'Y' WHERE todo_id = #{id};
+        UPDATE todo_tb set is_deleted = 'Y' WHERE todo_id = #{id};
     </update>
 
 </mapper>
