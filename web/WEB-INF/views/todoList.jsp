@@ -35,15 +35,15 @@
         <div id = "addTodo_div">
             <input type = "text" id = "addTodo_textBox" placeholder="오늘 할일을 계획해보세요!">
             <button type = "button" id = "addTodo_button" onclick="addTodo()">+</button>
+            <hr class = "underline">
         </div>
 
         <div id = "todoList_wrap">
             <table id = "todoList">
-                <tbody id = "addTodoHere">
-
-                </tbody>
+                <tbody id = "addTodoHere"></tbody>
             </table>
         </div>
+        <hr class = "underline">
 
     </div>
 

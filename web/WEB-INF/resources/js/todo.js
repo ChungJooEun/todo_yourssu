@@ -40,17 +40,27 @@ var addTodoAtList = function (data) {
     var tr = '<tr class = "todo_Comp_tr" name="remove_tr"></tr>';
 
     if(data.is_done == 'Y'){
-        tr += '<td> <input type="checkbox" class="input_class" value="' + data.id + '" checked onclick="status_todo(this)"> </td>';
+        tr += '<td> <input type="checkbox" class = "check_box" value="' + data.id + '" checked onclick="status_todo(this)"' +
+            'style = "width : 30px; height : 30px; border:none;"> </td>';
+
     } else{
-        tr += '<td> <input type="checkbox" class="input_class" value="' + data.id + '" onclick="status_todo(this)"> </td>';
+        tr += '<td> <input type="checkbox" class = "check_box" value="' + data.id + '" onclick="status_todo(this)"' +
+            'style = "width : 30px; height : 30px; border:none;"> </td>';
     }
 
     tr += '<td><input type = "textbox" value = "' + data.content
-        + '" class="input_class"  readonly style="border : none;" ' +
+        + '" class="input_class"  readonly style="border : none; margin-left:6px;" ' +
         'ondblclick="change_attr(this)" onchange="update_content(this)"' +
         'id = "'+data.id+'"/></td>';
 
-    tr += '<td> <button style = "outline:0; border:0; background-color: white;" type="button" value="'+data.id+'" onclick="deleteTodo(this.value)"> &times; </button> </td>';
+    tr += '<td> <button class = "del_btn" type="button" value="'+data.id+'" onclick="deleteTodo(this.value)"' +
+        'style = "width: 40px;\n' +
+        '    height: 40px;\n' +
+        '    outline:0;\n' +
+        '    border:0;\n' +
+        '    background-color: white;' +
+        'font-size : 30px;' +
+        'color:#3f79c1;"> &times; </button> </td>';
 
     $('#addTodoHere').append(tr);
 }
@@ -118,6 +128,7 @@ var status_todo = function(obj){
 
                 if(data == 'success'){
                     console.log(data);
+
                 }else{
                     alert("todo status change 실패");
                 }

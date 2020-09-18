@@ -1,3 +1,5 @@
+input[type=checkbox], input[type=radio] { border:none !important }
+
 body{
     padding : 0;
     margin : auto 0;
@@ -5,7 +7,6 @@ body{
 }
 
 #root{
-    background: mistyrose;
     text-align: center;
     font-family: 'Noto Serif KR', serif;
 }
@@ -13,6 +14,7 @@ body{
 #title_div{
     margin-top : 40px;
     font-size: 25px ;
+    color:#3f79c1;
 }
 
 .underline{
@@ -29,7 +31,9 @@ body{
 
 .input_class{
     font-family: 'Noto Serif KR', serif;
-    font-size: 15px;
+    font-size: 20px;
+    width: 400px;
+    height: 40px;
 }
 
 #addTodo_textBox{
@@ -37,8 +41,19 @@ body{
     height: 40px;
     font-size: 20px;
     text-align: center;
-    margin-bottom: 23px;
+    margin-bottom: 10px;
     font-family: 'Noto Serif KR', serif;
+    border:none;
+}
+#addTodo_textBox:hover{
+    background-color:#d7d8d8;
+    border-radius: 10px;
+}
+
+#check_box{
+    height: 40px;
+    width: 40px;
+    font-size: 30px;
 }
 
 #addTodo_button{
@@ -47,8 +62,12 @@ body{
     width: 39px;
     font-family: 'Noto Serif KR', serif;
     font-weight: 1000;
+    background-color:#3f79c1;
+    color:white;
+    border:none;
+    border-radius:10px;
 }
 
-
-
-
+#todoList_wrap{
+    margin-bottom : 18px;
+}
